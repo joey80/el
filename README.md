@@ -16,6 +16,8 @@ You can use whatever libraries you want to develop this as long as it consists o
 
 [Live Demo Site](https://joeyui-el.herokuapp.com/)
 
+Tested in IE11, Edge, Chrome and Firefox
+
 ## Built With
 
 * Vanilla Javascript
