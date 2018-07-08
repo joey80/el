@@ -37,14 +37,6 @@
         transform: translateY(90px);
     }
 
-    &__one {
-        background-image: url('~/../src/images/demo.jpg');
-
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
-            background-image: url('~/../src/images/demo@2x.jpg');
-        }
-    }
-
     &--over {
         opacity: 0.3;
         width: 70px;
@@ -74,5 +66,16 @@
     }
     75% {
         transform: rotate(-2.5deg);
+    }
+}
+
+// Create the classes for all of the icons
+@for $i from 1 through 24 {
+    .icon__#{$i}{
+        background-image: url('~/../src/images/icons/' + $i + '.png');
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+            background-image: url('~/../src/images/icons/' + $i + '@2x.png');
+        }
     }
 }

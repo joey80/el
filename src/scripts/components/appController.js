@@ -1,24 +1,40 @@
+
+// Main controller for the app. Avoids the global scope.
 export const appController = (function() {
 
+    // Set up some variables
     var dragged,
     draggedClone,
     container = document.getElementById('wallpaper'),
     allIcons = document.getElementsByClassName('icon');
 
 
+    // Create the icons divs and load them into the DOM
+    const buildLayout = (number) => {
+        for(var i = 1; i <= number; i++) {
+            var markup = `
+            <div class="icon__container">
+                <div class="icon icon__${i}" draggable="true"><span class="icon__label">Icon ${i}</span></div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', markup);
+        }
+    };
+
+
     // Add animations to icons
     const addIconAnimations = () => {
-        Array.prototype.forEach.call(allIcons, child => {
-            child.classList.add('icon--dragging');
-        });
+        for (let icons of allIcons) {
+            icons.classList.add('icon--dragging');
+        }
     };
 
 
     // Remove animations from icons
     const removeIconAnimations = () => {
-        Array.prototype.forEach.call(allIcons, child => {
-            child.classList.remove('icon--dragging');
-        });
+        for (let icons of allIcons) {
+            icons.classList.remove('icon--dragging');
+        }
     };
 
 
@@ -30,7 +46,7 @@ export const appController = (function() {
 
 
     // Create a custom 'ghost' drag element
-    // Only works in firefox right now
+    // (Note: Only works in firefox right now because of rendering an element outside of the viewport)
     const createGhostDragElement = (element, event) => {
         // Make a copy of the icon being dragged, style it and add it to the DOM
         draggedClone = element.cloneNode(true);
@@ -98,8 +114,8 @@ export const appController = (function() {
     };
 
 
+    // Event listeners for the drag events
     const setupEventListeners = () => {
-        // Event listeners for the drag events
         document.body.addEventListener('drag', function (event) {
         }, false);
 
@@ -132,6 +148,13 @@ export const appController = (function() {
         }, false);
 
 
+        // In case of a failed drop event
+        document.body.addEventListener('dragend', function(event) {
+            event.preventDefault();
+            removeIconAnimations();
+        }, false);
+
+
         document.body.addEventListener('drop', function (event) {
             if (event.target.classList.contains('icon')) {
                 handleDrop(event);
@@ -142,6 +165,7 @@ export const appController = (function() {
 
     return {
 		init: function() {
+            buildLayout(24);
 			setupEventListeners();
 		}
 };
