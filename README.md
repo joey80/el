@@ -8,4 +8,23 @@ Build a responsive webpage that emulates the layout of icons on a smart phone ho
 * Use png's for icons, 80px x 80px.  Icons should be retina ready
 * Extra Credit: Add a CSS only wallpaper design.
 
+![EL](https://user-images.githubusercontent.com/3519112/42417031-f1481b66-824b-11e8-82d7-251e49e599ce.png)
+
 You can use whatever libraries you want to develop this as long as it consists of HTML/CSS/JS.  You can send us a zip file of the page, or host it somewhere (such as Github), whatever works for you.
+
+# My attempt
+
+[Live Demo Site](https://joeyui-el.herokuapp.com/)
+
+## Built With
+
+* Vanilla Javascript
+* HTML5
+* CSS3
+* [Webpack](https://webpack.js.org/)
+* [Babel](https://babeljs.io/)
+* [Heroku](https://heroku.com/)
+
+## Authors
+
+* **Joey Leger** - [joey80](https://github.com/joey80)
