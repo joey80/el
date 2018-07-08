@@ -46,7 +46,8 @@ export const appController = (function() {
 
 
     // Create a custom 'ghost' drag element
-    // (Note: Only works in firefox right now because of rendering an element outside of the viewport)
+    // (Note: Only works in firefox right at the moment. Chrome blocks the rendering of an element outside of the viewport.
+    // IE and Edge have problems too. Im leaving it in for the time being)
     const createGhostDragElement = (element, event) => {
         // Make a copy of the icon being dragged, style it and add it to the DOM
         draggedClone = element.cloneNode(true);
@@ -59,6 +60,7 @@ export const appController = (function() {
 
 
     // Remove the custom 'ghost' drag element
+    // (NOTE: See above)
     const removeGhostDragElement = () => {
         document.body.removeChild(draggedClone);
     };
@@ -69,7 +71,7 @@ export const appController = (function() {
         let targetData = event.target.childNodes[0].innerHTML;
         event.dataTransfer.setData('text', `${targetData}`);
         dragged = event.target;
-        createGhostDragElement(dragged, event);
+        //createGhostDragElement(dragged, event);
         addIconAnimations();
     };
 
@@ -104,7 +106,7 @@ export const appController = (function() {
         event.target.classList.remove('icon--over');
 
         removeIconAnimations();
-        removeGhostDragElement();
+        //removeGhostDragElement();
     
         if (targetIndex < draggedIndex) {
             draggedParent = container.insertBefore(draggedParent, targetParent);  
@@ -164,10 +166,10 @@ export const appController = (function() {
 
 
     return {
-		init: function() {
+        init: function() {
             buildLayout(24);
-			setupEventListeners();
-		}
-};
+            setupEventListeners();
+        }
+    };
 
 })();
