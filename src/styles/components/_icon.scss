@@ -56,7 +56,7 @@
     }
 
     &--dragging {
-        animation: dragWiggle 0.35s linear infinite;
+        animation: dragWiggle 0.25s linear infinite;
     }
 }
 
@@ -73,9 +73,11 @@
 @for $i from 1 through 24 {
     .icon__#{$i}{
         background-image: url('~/../src/images/icons/' + $i + '.png');
+        background-size: contain;
 
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
             background-image: url('~/../src/images/icons/' + $i + '@2x.png');
+            background-size: contain;
         }
     }
 }
