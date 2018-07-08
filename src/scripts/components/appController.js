@@ -6,7 +6,8 @@ export const appController = (function() {
     var dragged,
     draggedClone,
     container = document.getElementById('wallpaper'),
-    allIcons = document.getElementsByClassName('icon');
+    allIcons = document.getElementsByClassName('icon'),
+    appNames = ['Instagram','YouTube','Snapchat','Messenger','Facebook','Google Maps','Netflix','Gmail','Bitmoji','Spotify Music','Uber','WhatsApp','Amazon','Cash App','Pandora Music','YouTube Music','musical.ly','Wish','Lyft','Hulu','Movies Diary','FOX Sports','Waze','Google Photos'];
 
 
     // Create the icons divs and load them into the DOM
@@ -14,7 +15,7 @@ export const appController = (function() {
         for(var i = 1; i <= number; i++) {
             var markup = `
             <div class="icon__container">
-                <div class="icon icon__${i}" draggable="true"><span class="icon__label">Icon ${i}</span></div>
+                <div class="icon icon__${i}" draggable="true"><span class="icon__label">${appNames[i-1]}</span></div>
             </div>
         `;
         container.insertAdjacentHTML('beforeend', markup);
@@ -86,12 +87,14 @@ export const appController = (function() {
     // When you enter an element
     const handleDragEnter = (event) => {
         event.target.classList.add('icon--over');
+        event.target.childNodes[0].classList.add('icon__label--over');
     };
 
 
     // When you leave an element
     const handleDragLeave = (event) => {
         event.target.classList.remove('icon--over');
+        event.target.childNodes[0].classList.remove('icon__label--over');
     };
 
 
@@ -117,33 +120,34 @@ export const appController = (function() {
 
 
     // Event listeners for the drag events
+    // Have the event bubble up from the body instead of attaching a handler to every single icon element
     const setupEventListeners = () => {
-        document.body.addEventListener('drag', function (event) {
+        document.body.addEventListener('drag', function(event) {
         }, false);
 
 
-        document.body.addEventListener('dragstart', function (event) {
+        document.body.addEventListener('dragstart', function(event) {
             if (event.target.classList.contains('icon')) {
                 handleDragStart(event);
             }
         }, false);
 
 
-        document.body.addEventListener('dragenter', function (event) {
+        document.body.addEventListener('dragenter', function(event) {
             if (event.target.classList.contains('icon')) {
                 handleDragEnter(event);
             }
         }, false);
 
 
-        document.body.addEventListener('dragover', function (event) {
+        document.body.addEventListener('dragover', function(event) {
             if (event.target.classList.contains('icon')) {
                 handleDragOver(event);
             }
         }, false);
 
 
-        document.body.addEventListener('dragleave', function (event) {
+        document.body.addEventListener('dragleave', function(event) {
             if (event.target.classList.contains('icon')) {
                 handleDragLeave(event);
             }
@@ -157,12 +161,13 @@ export const appController = (function() {
         }, false);
 
 
-        document.body.addEventListener('drop', function (event) {
+        document.body.addEventListener('drop', function(event) {
             if (event.target.classList.contains('icon')) {
                 handleDrop(event);
             }
         }, false);
     };
+
 
 
     return {

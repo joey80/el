@@ -13,11 +13,6 @@
     transition: all 0.2s ease-in-out;
     cursor: pointer;
 
-    &__image {
-        box-shadow: 0 3px 3px rgba(0,0,0,0.12), 0 3px 2px rgba(0,0,0,0.24);
-        border-radius: 15px;
-    }
-
     &__container {
         margin-bottom: 60px;
         flex-basis: 50%;
@@ -35,6 +30,11 @@
         display: block;
         color: #000;
         transform: translateY(90px);
+
+        &--over {
+            opacity: 0;
+            transition: all 0.2s ease-in-out;
+        }
     }
 
     &--over {
