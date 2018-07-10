@@ -107,10 +107,11 @@ export const appController = (function() {
         
         event.preventDefault();
         event.target.classList.remove('icon--over');
+        event.target.childNodes[0].classList.remove('icon__label--over');
 
         removeIconAnimations();
         //removeGhostDragElement();
-    
+
         if (targetIndex < draggedIndex) {
             draggedParent = container.insertBefore(draggedParent, targetParent);  
         } else {
