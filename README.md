@@ -1,4 +1,4 @@
-# ExploreLearning Assignment
+# Interview Assignment
 
 Build a responsive webpage that emulates the layout of icons on a smart phone home screen.  Use the attached mockup (layout.png) as a reference.  It should meet the following requirements:
 
