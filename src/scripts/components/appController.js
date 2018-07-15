@@ -169,8 +169,6 @@ export const appController = (function() {
         }, false);
     };
 
-
-
     return {
         init: function() {
             buildLayout(24);
